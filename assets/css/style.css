@@ -92,3 +92,40 @@ body {
     border-radius: 5px;
     margin-right: 10px;
 }
+/* 🌟 Sidebar + Content Layout */
+.container {
+    display: flex;
+}
+
+/* 📌 Sidebar */
+.sidebar {
+    width: 250px;
+    background: #f4f4f4;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    overflow-y: auto;
+}
+
+/* 📌 Content Area */
+.content {
+    margin-left: 270px; /* Ensures content does not overlap with sidebar */
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+/* 📌 Navigation Button Styling */
+.navigation {
+    margin-top: 20px;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
