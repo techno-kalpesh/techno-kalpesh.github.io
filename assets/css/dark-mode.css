@@ -1,0 +1,12 @@
+body.dark-mode {
+    background: #222;
+    color: white;
+}
+
+.main-menu.dark-mode {
+    background: #555;
+}
+
+#theme-toggle.dark-mode {
+    color: yellow;
+}
