@@ -3,29 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>My Coding Notes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header class="top-heder">
+    <!-- Top Header (Portfolio & Search) -->
+    <header class="top-header">
         <h1>My Portfolio</h1>
-        <button id="theme-toggle">🌙</button>
+        <input type="text" placeholder="Search Notes...">
+        <button onclick="toggleTheme()">Dark Mode</button>
     </header>
-<header class="icon-menu">
+
+    <!-- Navigation Menu -->
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="notes/java/">Java</a></li>
-            <li><a href="notes/c/">C</a></li>
-            <li><a href="notes/sql/">SQL</a></li>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="notes/java/index.html">Java</a></li>
+            <li><a href="notes/c/index.html">C</a></li>
+            <li><a href="notes/sql/index.html">SQL</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-</header>
 
+    <!-- Main Content -->
+    <section>
+        <h2>Welcome to My Coding Notes</h2>
+        <p>Explore well-organized programming notes for Java, C, and SQL.</p>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 My Portfolio</p>
+        <p>© 2025 MyWebsite. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
