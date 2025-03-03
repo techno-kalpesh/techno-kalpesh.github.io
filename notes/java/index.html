@@ -8,11 +8,6 @@
 </head>
 <body>
 
-    <!-- 🔹 Above Header (Portfolio Section) -->
-    <div class="above-header">
-        <h2>My Portfolio</h2>
-    </div>
-
     <!-- 🔹 Main Navigation Menu -->
     <nav class="main-menu">
         <ul>
@@ -24,67 +19,53 @@
         <button id="theme-toggle">🌙</button>
     </nav>
 
-    <!-- 📌 Main Content Section -->
+    <!-- 📌 Java Notes Section -->
     <main class="content">
-        <h1 id="page-title">Java Notes</h1>
+        <h1>Java Notes</h1>
         <p>Select a topic below:</p>
 
-        <!-- 📂 Dynamic List of Markdown Files -->
+        <!-- 📂 List of Markdown Files -->
         <ul id="file-list"></ul>
 
-        <!-- 📖 Markdown Content Display -->
-        <div id="md-content"></div>
-
-        <!-- 📌 Navigation Buttons -->
-        <div class="navigation">
-            <a href="../../index.html" class="btn">⬅ Home</a>
-        </div>
+        <!-- 📜 Markdown Content Will Appear Here -->
+        <div id="markdown-content" style="border: 1px solid #ddd; padding: 10px; margin-top: 20px;"></div>
     </main>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        // Function to load the list of markdown files dynamically
+        // Function to load the list of Markdown files
         async function loadFileList() {
             try {
-                const response = await fetch("file-list.json"); // Fetch JSON file containing .md list
+                const response = await fetch("file-list.json"); // Load JSON containing file names
                 const files = await response.json(); // Parse JSON
                 const listContainer = document.getElementById("file-list");
 
                 files.forEach(file => {
                     const listItem = document.createElement("li");
                     const link = document.createElement("a");
-                    link.href = "#"; // Prevent default navigation
+                    link.href = "#"; // Prevent default link behavior
                     link.textContent = file.replace(".md", "").replace("-", " "); // Format name
                     link.onclick = () => loadMarkdown(file); // Load content on click
                     listItem.appendChild(link);
                     listContainer.appendChild(listItem);
                 });
 
-                // Auto-load first file
-                if (files.length > 0) loadMarkdown(files[0]);
             } catch (error) {
                 document.getElementById("file-list").innerHTML = "<p style='color: red;'>Error loading file list.</p>";
             }
         }
 
-        // Function to load and render markdown file
+        // Function to fetch and display markdown content
         async function loadMarkdown(file) {
             try {
-                const response = await fetch(file); // Fetch the markdown file
-                if (!response.ok) throw new Error("File not found");
-                
+                const response = await fetch(file);
                 const text = await response.text();
-                document.getElementById("md-content").innerHTML = marked.parse(text); // Convert and display
-                
-                // Update page title based on file name
-                document.getElementById("page-title").innerText = file.replace(".md", "").replace("-", " ");
+                document.getElementById("markdown-content").innerText = text; // Show raw markdown
             } catch (error) {
-                document.getElementById("md-content").innerHTML = "<p style='color: red;'>Error: Markdown file not found.</p>";
+                document.getElementById("markdown-content").innerHTML = "<p style='color: red;'>Error loading file.</p>";
             }
         }
 
-        loadFileList(); // Initialize list loading
+        loadFileList(); // Initialize file list
     </script>
 
 </body>
