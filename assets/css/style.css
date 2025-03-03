@@ -1,3 +1,4 @@
+/* 🌟 Global Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,43 +6,51 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-.top-header {
-    background: #222;
+/* 🌟 Above Header (Portfolio Section) */
+.above-header {
+    background: #333;
     color: white;
-    padding: 10px 20px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* 🏠 Main Menu */
+.main-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.top-header input {
-    padding: 5px;
-}
-
-nav {
-    background: #0073e6;
+    background: #444;
     padding: 10px;
 }
 
-nav ul {
+.main-menu ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    margin: 0;
+    padding: 0;
 }
 
-nav ul li {
-    display: inline;
+.main-menu li {
+    margin: 0 10px;
 }
 
-nav ul li a {
+.main-menu a {
     color: white;
     text-decoration: none;
-    padding: 5px 10px;
+    font-weight: bold;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background: #333;
+/* 🌓 Dark Mode Button */
+#theme-toggle {
+    background: none;
+    border: none;
     color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* 📝 Home Content */
+.home-content {
+    text-align: center;
+    padding: 20px;
 }
