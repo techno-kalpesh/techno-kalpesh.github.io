@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Notes - My Portfolio</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 </head>
 <body>
 
-    <!-- 🔹 Main Navigation Menu -->
+    <!-- 🔹 Main Navigation -->
     <nav class="main-menu">
         <ul>
             <li><a href="../../index.html">Home</a></li>
@@ -27,24 +28,27 @@
         <!-- 📂 List of Markdown Files -->
         <ul id="file-list"></ul>
 
-        <!-- 📜 Markdown Content Will Appear Here -->
+        <!-- 📜 Markdown Content -->
         <div id="markdown-content" style="border: 1px solid #ddd; padding: 10px; margin-top: 20px;"></div>
     </main>
 
     <script>
-        // Function to load the list of Markdown files
+        // Initialize Markdown converter
+        const converter = new showdown.Converter();
+
+        // Function to load file list
         async function loadFileList() {
             try {
                 const response = await fetch("file-list.json"); // Load JSON containing file names
-                const files = await response.json(); // Parse JSON
+                const files = await response.json();
                 const listContainer = document.getElementById("file-list");
 
                 files.forEach(file => {
                     const listItem = document.createElement("li");
                     const link = document.createElement("a");
-                    link.href = "#"; // Prevent default link behavior
-                    link.textContent = file.replace(".md", "").replace("-", " "); // Format name
-                    link.onclick = () => loadMarkdown(file); // Load content on click
+                    link.href = "#";
+                    link.textContent = file.replace(".md", "").replace("-", " ");
+                    link.onclick = () => loadMarkdown(file);
                     listItem.appendChild(link);
                     listContainer.appendChild(listItem);
                 });
@@ -54,18 +58,19 @@
             }
         }
 
-        // Function to fetch and display markdown content
+        // Function to load and render Markdown
         async function loadMarkdown(file) {
             try {
                 const response = await fetch(file);
                 const text = await response.text();
-                document.getElementById("markdown-content").innerText = text; // Show raw markdown
+                const html = converter.makeHtml(text); // Convert Markdown to HTML
+                document.getElementById("markdown-content").innerHTML = html; // Display formatted content
             } catch (error) {
                 document.getElementById("markdown-content").innerHTML = "<p style='color: red;'>Error loading file.</p>";
             }
         }
 
-        loadFileList(); // Initialize file list
+        loadFileList(); // Load file list on page load
     </script>
 
 </body>
