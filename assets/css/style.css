@@ -1,125 +1,59 @@
 /* 🌟 Global Styles */
-:root {
-    --primary-bg: #333;
-    --secondary-bg: #444;
-    --primary-color: white;
-    --secondary-color: black;
-    --btn-bg: blue;
-    --btn-color: white;
-    --font-family: Arial, sans-serif;
-}
-
 body {
-    font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
-    transition: background 0.3s, color 0.3s;
+    font-family: Arial, sans-serif;  /* Sets font style */
+    margin: 0;  /* Removes default margin */
+    padding: 0;  /* Removes default padding */
+    transition: background 0.3s, color 0.3s;  /* Smooth transition effect */
 }
 
 /* 🌟 Above Header (Portfolio Section) */
 .above-header {
-    background: var(--primary-bg);
-    color: var(--primary-color);
-    text-align: center;
-    padding: 10px 0;
+    background: #333;  /* Dark background color */
+    color: white;  /* White text color */
+    text-align: center;  /* Center aligns text */
+    padding: 10px 0;  /* Adds vertical spacing */
 }
 
-/* 🏠 Main Menu */
+/* 🏠 Main Navigation Menu */
 .main-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--secondary-bg);
-    padding: 10px;
+    display: flex;  /* Makes the menu horizontal */
+    justify-content: space-between;  /* Spreads items across the width */
+    align-items: center;  /* Aligns items vertically */
+    background: #444;  /* Dark background */
+    padding: 10px;  /* Adds padding */
 }
 
+/* Styles for menu list */
 .main-menu ul {
-    list-style: none;
-    display: flex;
+    list-style: none;  /* Removes bullet points */
+    display: flex;  /* Aligns list items horizontally */
     margin: 0;
     padding: 0;
 }
 
+/* Styles for menu items */
 .main-menu li {
-    margin: 0 10px;
+    margin: 0 10px;  /* Adds spacing between menu items */
 }
 
+/* Styles for menu links */
 .main-menu a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: bold;
+    color: white;  /* White text */
+    text-decoration: none;  /* Removes underline */
+    font-weight: bold;  /* Makes text bold */
 }
 
 /* 🌓 Dark Mode Button */
 #theme-toggle {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-size: 18px;
-    cursor: pointer;
+    background: none;  /* Removes default button background */
+    border: none;  /* Removes button border */
+    color: white;  /* White text */
+    font-size: 18px;  /* Sets font size */
+    cursor: pointer;  /* Changes cursor to pointer on hover */
 }
 
 /* 📝 Home Content */
 .home-content {
-    text-align: center;
-    padding: 20px;
+    text-align: center;  /* Centers content */
+    padding: 20px;  /* Adds spacing */
 }
-
-/* 📌 Sidebar */
-.sidebar {
-    width: 250px;
-    background: #f4f4f4;
-    padding: 20px;
-    height: calc(100vh - 60px); /* Adjusted to subtract header height */
-    position: fixed;
-    left: 0;
-    top: 60px; /* Added to push sidebar below the header */
-    overflow-y: auto;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin: 10px 0;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: var(--secondary-color);
-}
-
-
-/* 📌 Content Area */
-.content {
-    margin-left: 270px;
-    padding: 20px;
-    width: calc(100% - 270px);
-    margin-top: 80px; /* Added margin to avoid overlap with header */
-}
-
-/* 📌 Navigation Button Styling */
-.navigation {
-    margin-top: 20px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background: var(--btn-bg);
-    color: var(--btn-color);
-    text-decoration: none;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-/* Add this to your style.css */
-#three-lines-button {
-    display: none; /* Hide by default */
-}
-
-#three-lines-button.show {
-    display: block; /* Show when the class is added */
-}
-
