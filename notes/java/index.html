@@ -1,66 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Notes - My Portfolio</title>
+    <!-- Specifies document type and version of HTML -->
+    <meta charset="UTF-8">  <!-- Defines character encoding for proper text rendering -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Makes the page responsive on mobile devices -->
+    <title>Java Notes - My Portfolio</title>  <!-- Sets the title of the page -->
+    
+    <!-- Link to external CSS file for styling -->
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <!-- Above Header (Portfolio) -->
+
+    <!-- 🔹 Above Header (Portfolio Section) -->
     <div class="above-header">
-        <h2>My Portfolio</h2>
+        <h2>My Portfolio</h2>  <!-- Displays Portfolio title at the top -->
     </div>
- 
-    <!-- Main Navigation -->
+
+    <!-- 🔹 Main Navigation Menu -->
     <nav class="main-menu">
         <ul>
+            <!-- Navigation links to different sections of the website -->
             <li><a href="../../index.html">Home</a></li>
-            <li><a href="../java/index.html">Java</a></li>
+            <li><a href="../java/index.html" class="active">Java</a></li>
             <li><a href="../c/index.html">C</a></li>
             <li><a href="../sql/index.html">SQL</a></li>
         </ul>
+        <!-- Dark mode toggle button -->
         <button id="theme-toggle">🌙</button>
     </nav>
-    <!-- Top Navigation -->
-    <header>
-        <div class="logo">My Portfolio</div>
-        <nav>
-            <ul>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../java/index.html" class="active">Java</a></li>
-                <li><a href="../c/index.html">C</a></li>
-                <li><a href="../sql/index.html">SQL</a></li>
-                <li><button id="theme-toggle">🌙</button></li>
-            </ul>
-        </nav>
-    </header>
- 
-    <!-- Main Layout -->
-    <div class="container">
-         
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h3>Java Topics</h3>
-            <ul>
-                <li><a href="01-introduction.html">Introduction</a></li>
-                <li><a href="02-basics.html">Basics</a></li>
-            </ul>
-        </aside>
- 
-        <!-- Content -->
-        <main class="content">
-            <h1>Welcome to Java Notes</h1>
-            <p>Learn Java programming from scratch.</p>
- 
-            <div class="navigation">
-                <a href="../../index.html" class="btn">⬅ Home</a>
-                <a href="01-introduction.html" class="btn">Next ➡</a>
-            </div>
-        </main>
- 
-    </div>
- 
+
+    <!-- 📌 Main Content Section (Without Sidebar) -->
+    <main class="content">
+        <h1>Welcome to Java Notes</h1>  <!-- Page title -->
+        <p>Learn Java programming from scratch.</p>  <!-- Page description -->
+
+        <!-- 📌 Navigation Buttons (Home & Next Page) -->
+        <div class="navigation">
+            <a href="../../index.html" class="btn">⬅ Home</a>  <!-- Button to go back to homepage -->
+            <a href="01-introduction.html" class="btn">Next ➡</a>  <!-- Button to move to next Java topic -->
+        </div>
+    </main>
+
+    <!-- JavaScript file for theme toggling -->
     <script src="../../assets/js/script.js"></script>
+
 </body>
 </html>
