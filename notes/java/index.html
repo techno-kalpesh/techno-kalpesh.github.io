@@ -1,49 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Specifies document type and version of HTML -->
-    <meta charset="UTF-8">  <!-- Defines character encoding for proper text rendering -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Makes the page responsive on mobile devices -->
-    <title>Java Notes - My Portfolio</title>  <!-- Sets the title of the page -->
-    
-    <!-- Link to external CSS file for styling -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Notes - My Portfolio</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 
     <!-- 🔹 Above Header (Portfolio Section) -->
     <div class="above-header">
-        <h2>Java Tutorial</h2>  <!-- Displays Portfolio title at the top -->
+        <h2>My Portfolio</h2>
     </div>
 
     <!-- 🔹 Main Navigation Menu -->
     <nav class="main-menu">
         <ul>
-            <!-- Navigation links to different sections of the website -->
             <li><a href="../../index.html">Home</a></li>
             <li><a href="../java/index.html" class="active">Java</a></li>
             <li><a href="../c/index.html">C</a></li>
             <li><a href="../sql/index.html">SQL</a></li>
         </ul>
-        <!-- Dark mode toggle button -->
         <button id="theme-toggle">🌙</button>
     </nav>
 
-    <!-- 📌 Main Content Section (Without Sidebar) -->
+    <!-- 📌 Main Content Section -->
     <main class="content">
-        <h1>Java Topics :</h1>  <!-- Page title -->
-        <p>Introduction to Java</p><!-- Page description -->
-        <p>Java Installation</p>
+        <h1 id="page-title">Java Notes</h1>
+        <p>Select a topic below:</p>
 
-        <!-- 📌 Navigation Buttons (Home & Next Page) -->
+        <!-- 📂 Dynamic List of Markdown Files -->
+        <ul id="file-list"></ul>
+
+        <!-- 📖 Markdown Content Display -->
+        <div id="md-content"></div>
+
+        <!-- 📌 Navigation Buttons -->
         <div class="navigation">
-            <a href="../../index.html" class="btn">⬅ Home</a>  <!-- Button to go back to homepage -->
-            <a href="01-introduction.html" class="btn">Next ➡</a>  <!-- Button to move to next Java topic -->
+            <a href="../../index.html" class="btn">⬅ Home</a>
         </div>
     </main>
 
-    <!-- JavaScript file for theme toggling -->
-    <script src="../../assets/js/script.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Function to load the list of markdown files dynamically
+        async function loadFileList() {
+            try {
+                const response = await fetch("file-list.json"); // Fetch JSON file containing .md list
+                const files = await response.json(); // Parse JSON
+                const listContainer = document.getElementById("file-list");
+
+                files.forEach(file => {
+                    const listItem = document.createElement("li");
+                    const link = document.createElement("a");
+                    link.href = "#"; // Prevent default navigation
+                    link.textContent = file.replace(".md", "").replace("-", " "); // Format name
+                    link.onclick = () => loadMarkdown(file); // Load content on click
+                    listItem.appendChild(link);
+                    listContainer.appendChild(listItem);
+                });
+
+                // Auto-load first file
+                if (files.length > 0) loadMarkdown(files[0]);
+            } catch (error) {
+                document.getElementById("file-list").innerHTML = "<p style='color: red;'>Error loading file list.</p>";
+            }
+        }
+
+        // Function to load and render markdown file
+        async function loadMarkdown(file) {
+            try {
+                const response = await fetch(file); // Fetch the markdown file
+                if (!response.ok) throw new Error("File not found");
+                
+                const text = await response.text();
+                document.getElementById("md-content").innerHTML = marked.parse(text); // Convert and display
+                
+                // Update page title based on file name
+                document.getElementById("page-title").innerText = file.replace(".md", "").replace("-", " ");
+            } catch (error) {
+                document.getElementById("md-content").innerHTML = "<p style='color: red;'>Error: Markdown file not found.</p>";
+            }
+        }
+
+        loadFileList(); // Initialize list loading
+    </script>
 
 </body>
 </html>
