@@ -1,111 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Notes - My Portfolio</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- Specifies document type and version of HTML -->
+    <meta charset="UTF-8">  <!-- Defines character encoding for proper text rendering -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Makes the page responsive on mobile devices -->
+    <title>Java Notes - My Portfolio</title>  <!-- Sets the title of the page -->
     
-    <!-- 🔹 Showdown.js for Markdown Parsing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
-
-    <!-- 🔹 Prism.js for Syntax Highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
-
-    <style>
-        /* 📌 Ensuring code blocks are styled properly */
-        pre {
-            background: #282c34; /* Dark background */
-            color: #fff; /* Light text */
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        code {
-            font-family: "Courier New", monospace;
-            font-size: 14px;
-        }
-    </style>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 
-    <!-- 🔹 Main Navigation -->
+    <!-- 🔹 Above Header (Portfolio Section) -->
+    <div class="above-header">
+        <h2>My Portfolio</h2>  <!-- Displays Portfolio title at the top -->
+    </div>
+
+    <!-- 🔹 Main Navigation Menu -->
     <nav class="main-menu">
         <ul>
+            <!-- Navigation links to different sections of the website -->
             <li><a href="../../index.html">Home</a></li>
             <li><a href="../java/index.html" class="active">Java</a></li>
             <li><a href="../c/index.html">C</a></li>
             <li><a href="../sql/index.html">SQL</a></li>
         </ul>
+        <!-- Dark mode toggle button -->
         <button id="theme-toggle">🌙</button>
     </nav>
 
-    <!-- 📌 Java Notes Section -->
+    <!-- 📌 Main Content Section (Without Sidebar) -->
     <main class="content">
-        <h1>Java Notes</h1>
-        <p>Select a topic below:</p>
+        <h1>Welcome to Java Notes</h1>  <!-- Page title -->
+        <p>Learn Java programming from scratch.</p>  <!-- Page description -->
 
-        <!-- 📂 List of Markdown Files -->
-        <ul id="file-list"></ul>
-
-        <!-- 📜 Markdown Content -->
-        <div id="markdown-content" style="border: 1px solid #ddd; padding: 10px; margin-top: 20px;"></div>
+        <!-- 📌 Navigation Buttons (Home & Next Page) -->
+        <div class="navigation">
+            <a href="../../index.html" class="btn">⬅ Home</a>  <!-- Button to go back to homepage -->
+            <a href="01-introduction.html" class="btn">Next ➡</a>  <!-- Button to move to next Java topic -->
+        </div>
     </main>
 
-    <script>
-        const converter = new showdown.Converter({
-            tables: true,  // Enable tables
-            emoji: true,   // Enable emojis
-            simplifiedAutoLink: true,
-            literalMidWordUnderscores: true,
-            strikethrough: true,
-            ghCodeBlocks: true
-        });
-
-        async function loadFileList() {
-            try {
-                const response = await fetch("file-list.json");
-                const files = await response.json();
-                const listContainer = document.getElementById("file-list");
-
-                files.forEach(file => {
-                    const listItem = document.createElement("li");
-                    const link = document.createElement("a");
-                    link.href = "#";
-                    link.textContent = file.replace(".md", "").replace("-", " ");
-                    link.onclick = () => loadMarkdown(file);
-                    listItem.appendChild(link);
-                    listContainer.appendChild(listItem);
-                });
-
-            } catch (error) {
-                document.getElementById("file-list").innerHTML = "<p style='color: red;'>Error loading file list.</p>";
-            }
-        }
-
-        async function loadMarkdown(file) {
-            try {
-                const response = await fetch(file);
-                const text = await response.text();
-                let html = converter.makeHtml(text);
-
-                // 📌 Ensure proper syntax highlighting by wrapping code blocks
-                html = html.replace(/<pre><code class="(.+?)">/g, '<pre class="language-$1"><code class="language-$1">');
-
-                document.getElementById("markdown-content").innerHTML = html;
-
-                // 🖥 Apply syntax highlighting
-                Prism.highlightAll();
-
-            } catch (error) {
-                document.getElementById("markdown-content").innerHTML = "<p style='color: red;'>Error loading file.</p>";
-            }
-        }
-
-        loadFileList(); // Load file list on page load
-    </script>
+    <!-- JavaScript file for theme toggling -->
+    <script src="../../assets/js/script.js"></script>
 
 </body>
 </html>
