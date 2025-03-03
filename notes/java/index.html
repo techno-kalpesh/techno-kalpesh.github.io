@@ -17,13 +17,15 @@
     <style>
         /* 📌 Ensuring code blocks are styled properly */
         pre {
-            background: #f4f4f4;
+            background: #282c34; /* Dark background */
+            color: #fff; /* Light text */
             padding: 10px;
             border-radius: 5px;
             overflow-x: auto;
         }
         code {
             font-family: "Courier New", monospace;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -55,8 +57,11 @@
     <script>
         const converter = new showdown.Converter({
             tables: true,  // Enable tables
-            ghCodeBlocks: true, // Enable GitHub-style code blocks
-            emoji: true  // Enable emojis (optional)
+            emoji: true,   // Enable emojis
+            simplifiedAutoLink: true,
+            literalMidWordUnderscores: true,
+            strikethrough: true,
+            ghCodeBlocks: true
         });
 
         async function loadFileList() {
@@ -86,13 +91,12 @@
                 const text = await response.text();
                 let html = converter.makeHtml(text);
 
-                // 🖥 Wrap code blocks with <pre><code>
-                html = html.replace(/<pre><code>/g, '<pre class="language-java"><code class="language-java">');
-                html = html.replace(/<\/code><\/pre>/g, '</code></pre>');
+                // 📌 Ensure proper syntax highlighting by wrapping code blocks
+                html = html.replace(/<pre><code class="(.+?)">/g, '<pre class="language-$1"><code class="language-$1">');
 
                 document.getElementById("markdown-content").innerHTML = html;
-                
-                // 🔹 Reapply syntax highlighting after inserting new content
+
+                // 🖥 Apply syntax highlighting
                 Prism.highlightAll();
 
             } catch (error) {
