@@ -1,6 +1,16 @@
 /* 🌟 Global Styles */
+:root {
+    --primary-bg: #333;
+    --secondary-bg: #444;
+    --primary-color: white;
+    --secondary-color: black;
+    --btn-bg: blue;
+    --btn-color: white;
+    --font-family: Arial, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family);
     margin: 0;
     padding: 0;
     transition: background 0.3s, color 0.3s;
@@ -8,8 +18,8 @@ body {
 
 /* 🌟 Above Header (Portfolio Section) */
 .above-header {
-    background: #333;
-    color: white;
+    background: var(--primary-bg);
+    color: var(--primary-color);
     text-align: center;
     padding: 10px 0;
 }
@@ -19,7 +29,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #444;
+    background: var(--secondary-bg);
     padding: 10px;
 }
 
@@ -35,7 +45,7 @@ body {
 }
 
 .main-menu a {
-    color: white;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
 }
@@ -44,7 +54,7 @@ body {
 #theme-toggle {
     background: none;
     border: none;
-    color: white;
+    color: var(--primary-color);
     font-size: 18px;
     cursor: pointer;
 }
@@ -53,48 +63,6 @@ body {
 .home-content {
     text-align: center;
     padding: 20px;
-}
-/* Sidebar */
-.sidebar {
-    width: 250px;
-    background: #f4f4f4;
-    padding: 20px;
-    height: 100vh;
-}
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-.sidebar ul li {
-    margin: 10px 0;
-}
-.sidebar ul li a {
-    text-decoration: none;
-    color: black;
-}
-
-/* Content */
-.content {
-    flex-grow: 1;
-    padding: 20px;
-}
-
-/* Navigation Buttons */
-.navigation {
-    margin-top: 20px;
-}
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background: blue;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-/* 🌟 Sidebar + Content Layout */
-.container {
-    display: flex;
 }
 
 /* 📌 Sidebar */
@@ -109,9 +77,23 @@ body {
     overflow-y: auto;
 }
 
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
 /* 📌 Content Area */
 .content {
-    margin-left: 270px; /* Ensures content does not overlap with sidebar */
+    margin-left: 270px;
     padding: 20px;
     width: calc(100% - 270px);
 }
@@ -120,11 +102,12 @@ body {
 .navigation {
     margin-top: 20px;
 }
+
 .btn {
     display: inline-block;
     padding: 10px 15px;
-    background: blue;
-    color: white;
+    background: var(--btn-bg);
+    color: var(--btn-color);
     text-decoration: none;
     border-radius: 5px;
     margin-right: 10px;
