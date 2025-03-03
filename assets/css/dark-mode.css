@@ -1,12 +1,21 @@
+/* CSS Variables for Dark Mode */
+:root {
+    --dark-bg: #222;
+    --dark-secondary-bg: #555;
+    --dark-color: white;
+    --dark-toggle-color: yellow;
+}
+
+/* 🌑 Dark Mode Styles */
 body.dark-mode {
-    background: #222;
-    color: white;
+    background: var(--dark-bg);
+    color: var(--dark-color);
 }
 
 .main-menu.dark-mode {
-    background: #555;
+    background: var(--dark-secondary-bg);
 }
 
 #theme-toggle.dark-mode {
-    color: yellow;
+    color: var(--dark-toggle-color);
 }
