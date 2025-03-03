@@ -44,4 +44,5 @@ Any hardware or software environment in which a program runs is known as a platf
 <br>The Java Runtime Environment (JRE) provides the libraries, Java Virtual Machine (JVM), and other components required to run Java applications.
 
 - **Java Virtual Machine (JVM) :**
-<br>The Java Virtual Machine (JVM) is an abstract computing machine that enables a computer to run a Java program. It converts Java bytecode into machine code and executes it on the host machine.
+<br>The Java Virtual Machine (JVM) is an abstract computing machine that enables a computer to run a Java program. It converts Java bytecode into machine code and executes it on the host machine
+[Next →](02-Java-installation.md)
