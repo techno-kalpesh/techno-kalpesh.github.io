@@ -112,3 +112,23 @@ body {
     border-radius: 5px;
     margin-right: 10px;
 }
+/* 📌 Sidebar */
+.sidebar {
+    width: 250px;
+    background: #f4f4f4;
+    padding: 20px;
+    height: calc(100vh - 60px); /* Adjusted to subtract header height */
+    position: fixed;
+    left: 0;
+    top: 60px; /* Added to push sidebar below the header */
+    overflow-y: auto;
+    margin-top: 20px; /* Added margin to avoid overlap */
+}
+
+/* 📌 Content Area */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+    margin-top: 80px; /* Added margin to avoid overlap with header */
+}
