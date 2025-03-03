@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang='en'><head><style type='text/css'>html,body{padding:4px 8px 4px 8px;font-family:'sans-serif-regular';}h1,h2,h3,h4,h5,h6{font-family:'sans-serif-condensed';}a{color: #388E3C;text-decoration:underline;}img{height:auto;max-width:100%;max-height: 90vh;margin:auto;}html,body{color:#ffffff;background-color:#303030;}a:visited{color:#dddddd;}blockquote{color:#cccccc;}</style><style>video, img { max-width: 100%; } pre { max-width: 100%; overflow: auto; } table, th, td {  border: 1px solid white; border-collapse: collapse; border-spacing: 0; padding: 6px; } .floatl {float: left;} .clear {clear:both;} button:hover,button:active {filter: invert(1);} button { display: inline-block; box-sizing: border-box; border: none; border-radius: 4px; padding: 0 16px; min-width: 64px; height: 36px; font-family: 'Roboto'; font-size: 14px; font-weight: 500;  line-height: 36px; overflow: hidden; outline: none; vertical-align: middle; text-align: center; text-overflow: ellipsis; text-transform: uppercase; box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12); margin: 4px 4px 8px 0px;}    .emojibtn,.fa {font-size:250%; background: transparent; padding: 0px; min-width:0px;}    .sticky {position: sticky; display: inline-block; border: 0px solid white;} body{margin:0;padding:0.5vh 3.5vw} .header_no_underline { text-decoration: none; color: white; } h1 < a.header_no_underline { border-bottom: 2px solid #eaecef; }  h1,h2 { border-bottom: 2px solid #eaecef; } blockquote{padding:0px 14px;border-left:3.5px solid #dddddd;margin:4px 0}.video-container > p { margin: 0; }.task-list-item { list-style-type:none; text-indent: -1.4em; } li.task-list-item > pre, li.task-list-item > ul > li { text-indent: 0pt; }p > a { word-break:break-all; }.markor-table-of-contents { border: 1px solid white; border-radius: 2px; } .markor-table-of-contents > h1 { padding-left: 14px; margin-bottom: -8px; border-bottom: 1px solid white; } .markor-table-of-contents-list li { margin-left: -12px; } .markor-table-of-contents-list a { text-decoration: none; }</style><link rel='stylesheet' href='file:///android_asset/prism/themes/prism-tomorrow.min.css'/><link rel='stylesheet' href='file:///android_asset/prism/style.css'/><link rel='stylesheet' href='file:///android_asset/prism/plugins/toolbar/prism-toolbar.css'/><script src='file:///android_asset/prism/prism.js'></script><script src='file:///android_asset/prism/main.js'></script><script src='file:///android_asset/prism/plugins/autoloader/prism-autoloader.min.js'></script><script src='file:///android_asset/prism/plugins/toolbar/prism-toolbar.min.js'></script><script src='file:///android_asset/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.js'></script><style> 
+html, body { 
+/* 
+font-family: sans-serif-condensed; 
+font-size: 80%; 
+*/ 
+} 
+</style> 
+ 
+<script type="text/javascript"> 
+function onPageLoaded() { 
+/* 
+if ('format-markdown fileext-md' == 'MarkdownTextConverter') { 
+ window.scrollTo(0, document.body.scrollHeight); 
+} 
+*/ 
+} 
+</script><script> function onPageLoaded_markor_private() {
+wrapCodeBlockWords();
+onPageLoaded(); }
+</script></head>
+<body class='format-markdown fileext-md' onload='onPageLoaded_markor_private();'>
+
+<!-- USER DOCUMENT CONTENT -->
+
+
+<h1 id="setting-up-java-development-environment" line="0"><a href="#setting-up-java-development-environment" class="header_no_underline" line="0">Setting Up Java Development Environment</a></h1>
+<h2 id="step-1-download-and-install-the-jdk" line="1"><a href="#step-1-download-and-install-the-jdk" class="header_no_underline" line="1">Step 1: Download and Install the JDK</a></h2>
+<ol line="2">
+<li line="2">Go to the <a href="https://www.oracle.com/java/technologies/javase-downloads.html" line="2">Oracle JDK download page</a>.</li>
+<li line="3">Download the appropriate JDK version for your operating system.</li>
+<li line="4">Follow the installation instructions for your operating system:
+<ul line="5">
+<li line="5"><strong line="5">Windows</strong>: Run the installer and follow the on-screen instructions.</li>
+<li line="6"><strong line="6">macOS</strong>: Open the downloaded DMG file and follow the on-screen instructions.</li>
+<li line="7"><strong line="7">Linux</strong>: Use the package manager to install the JDK, or download and extract the tar.gz file.</li>
+</ul>
+</li>
+</ol>
+<h2 id="step-2-set-up-environment-variables" line="9"><a href="#step-2-set-up-environment-variables" class="header_no_underline" line="9">Step 2: Set Up Environment Variables</a></h2>
+<h3 id="windows" line="10"><a href="#windows" class="header_no_underline" line="10">Windows</a></h3>
+<ol line="11">
+<li line="11">Open the <strong line="11">Control Panel</strong>.</li>
+<li line="12">Go to <strong line="12">System and Security</strong> &gt; <strong line="12">System</strong> &gt; <strong line="12">Advanced system settings</strong>.</li>
+<li line="13">Click on the <strong line="13">Environment Variables</strong> button.</li>
+<li line="14">In the <strong line="14">System variables</strong> section, click <strong line="14">New</strong> and enter the following:
+<ul line="15">
+<li line="15"><strong line="15">Variable name</strong>: <code line="15">JAVA_HOME</code></li>
+<li line="16"><strong line="16">Variable value</strong>: The path to your JDK installation directory (e.g., <code line="16">C:\Program Files\Java\jdk-&lt;version&gt;</code>).</li>
+</ul>
+</li>
+<li line="17">Find the <strong line="17">Path</strong> variable in the <strong line="17">System variables</strong> section, select it, and click <strong line="17">Edit</strong>.</li>
+<li line="18">Add the following to the end of the <strong line="18">Path</strong> variable value:
+<ul line="19">
+<li line="19"><code line="19">%JAVA_HOME%\bin</code></li>
+</ul>
+</li>
+<li line="20">Click <strong line="20">OK</strong> to close all dialog boxes.</li>
+</ol>
+<h3 id="macos" line="22"><a href="#macos" class="header_no_underline" line="22">macOS</a></h3>
+<ol line="23">
+<li line="23">Open a terminal window.</li>
+<li line="24">Open the <code line="24">.bash_profile</code> or <code line="24">.zshrc</code> file in your home directory using a text editor.
+<pre line="25"><code class="language-sh" line="25">nano ~/.bash_profile
+</code></pre>
+</li>
+<li line="28">Add the following lines to the file:
+<pre line="29"><code class="language-sh" line="29">export JAVA_HOME=\$(/usr/libexec/java_home)
+export PATH=\$JAVA_HOME/bin:\$PATH
+</code></pre>
+</li>
+<li line="33">Save the file and close the text editor.</li>
+<li line="34">Run the following command to apply the changes:
+<pre line="35"><code class="language-sh" line="35">source ~/.bash_profile
+</code></pre>
+</li>
+</ol>
+<h3 id="linux" line="39"><a href="#linux" class="header_no_underline" line="39">Linux</a></h3>
+<ol line="40">
+<li line="40">Open a terminal window.</li>
+<li line="41">Open the <code line="41">.bashrc</code> or <code line="41">.profile</code> file in your home directory using a text editor.
+<pre line="42"><code class="language-sh" line="42">nano ~/.bashrc
+</code></pre>
+</li>
+<li line="45">Add the following lines to the file:
+<pre line="46"><code class="language-sh" line="46">export JAVA_HOME=/path/to/jdk
+export PATH=\$JAVA_HOME/bin:\$PATH
+</code></pre>
+</li>
+<li line="50">Save the file and close the text editor.</li>
+<li line="51">Run the following command to apply the changes:
+<pre line="52"><code class="language-sh" line="52">source ~/.bashrc
+</code></pre>
+</li>
+</ol>
+<h2 id="step-3-verify-the-installation" line="56"><a href="#step-3-verify-the-installation" class="header_no_underline" line="56">Step 3: Verify the Installation</a></h2>
+<ol line="57">
+<li line="57">Open a terminal or command prompt.</li>
+<li line="58">Run the following command to verify that the JDK is installed correctly:
+<pre line="59"><code class="language-sh" line="59">java -version
+</code></pre>
+</li>
+<li line="62">You should see output similar to the following:
+<pre line="63"><code line="63">java version &quot;1.8.0_281&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_281-b09)
+Java HotSpot(TM) 64-Bit Server VM (build 25.281-b09, mixed mode)
+</code></pre>
+</li>
+</ol>
+<h2 id="step-4-install-an-integrated-development-environment-ide" line="69"><a href="#step-4-install-an-integrated-development-environment-ide" class="header_no_underline" line="69">Step 4: Install an Integrated Development Environment (IDE)</a></h2>
+<h3 id="popular-java-ides" line="70"><a href="#popular-java-ides" class="header_no_underline" line="70">Popular Java IDEs</a></h3>
+<ul line="71">
+<li line="71"><strong line="71">IntelliJ IDEA</strong>: A powerful and popular IDE for Java development. <a href="https://www.jetbrains.com/idea/download/" line="71">Download IntelliJ IDEA</a></li>
+<li line="72"><strong line="72">Eclipse</strong>: A widely used open-source IDE for Java development. <a href="https://www.eclipse.org/downloads/" line="72">Download Eclipse</a></li>
+<li line="73"><strong line="73">NetBeans</strong>: Another popular open-source IDE for Java development. <a href="https://netbeans.apache.org/download/index.html" line="73">Download NetBeans</a></li>
+</ul>
+<h2 id="step-5-create-your-first-java-project" line="75"><a href="#step-5-create-your-first-java-project" class="header_no_underline" line="75">Step 5: Create Your First Java Project</a></h2>
+<ol line="76">
+<li line="76">Open your preferred IDE.</li>
+<li line="77">Create a new Java project.</li>
+<li line="78">Add a new Java class with the following code:
+<pre line="79"><code class="language-java" line="79">public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println(&quot;Hello, World!&quot;);
+    }
+}
+</code></pre>
+</li>
+<li line="86">Run the project to see the output:
+<pre line="87"><code line="87">Hello, World!
+</code></pre>
+</li>
+</ol>
+
+
+<!-- USER DOCUMENT CONTENT END -->
+
+</body></html>
