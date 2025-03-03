@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Notes - My Portfolio</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    
+    <!-- 🔹 Showdown.js for Markdown Parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+
+    <!-- 🔹 Prism.js for Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+
+    <style>
+        /* 📌 Ensuring code blocks are styled properly */
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: "Courier New", monospace;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,13 +53,15 @@
     </main>
 
     <script>
-        // Initialize Markdown converter
-        const converter = new showdown.Converter();
+        const converter = new showdown.Converter({
+            tables: true,  // Enable tables
+            ghCodeBlocks: true, // Enable GitHub-style code blocks
+            emoji: true  // Enable emojis (optional)
+        });
 
-        // Function to load file list
         async function loadFileList() {
             try {
-                const response = await fetch("file-list.json"); // Load JSON containing file names
+                const response = await fetch("file-list.json");
                 const files = await response.json();
                 const listContainer = document.getElementById("file-list");
 
@@ -58,13 +80,21 @@
             }
         }
 
-        // Function to load and render Markdown
         async function loadMarkdown(file) {
             try {
                 const response = await fetch(file);
                 const text = await response.text();
-                const html = converter.makeHtml(text); // Convert Markdown to HTML
-                document.getElementById("markdown-content").innerHTML = html; // Display formatted content
+                let html = converter.makeHtml(text);
+
+                // 🖥 Wrap code blocks with <pre><code>
+                html = html.replace(/<pre><code>/g, '<pre class="language-java"><code class="language-java">');
+                html = html.replace(/<\/code><\/pre>/g, '</code></pre>');
+
+                document.getElementById("markdown-content").innerHTML = html;
+                
+                // 🔹 Reapply syntax highlighting after inserting new content
+                Prism.highlightAll();
+
             } catch (error) {
                 document.getElementById("markdown-content").innerHTML = "<p style='color: red;'>Error loading file.</p>";
             }
