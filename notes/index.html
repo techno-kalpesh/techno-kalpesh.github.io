@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <!-- Link to JavaScript file -->
-    <script src="../assets/js/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> 
 </head>
 <body>
 
-    <!-- 🌟 Above Header (Same as Home Page) -->
+    <!-- 🌟 Header -->
     <header class="above-header">
         <div class="container">
             <h1>My Portfolio</h1>
@@ -21,7 +21,7 @@
         </div>
     </header>
 
-    <!-- 🏠 Main Navigation Menu (Same as Home Page) -->
+    <!-- 🏠 Main Navigation Menu -->
     <nav class="main-menu">
         <ul>
             <li><a href="../index.html">Home</a></li>
@@ -37,7 +37,7 @@
         <h2>Programming Notes</h2>
         <p>Click on a category to view notes.</p>
 
-        <!-- Dropdown Sections for Notes -->
+        <!-- Dropdown Sections -->
         <div class="dropdown">
             <button onclick="toggleDropdown('c')">C Programming ⏬</button>
             <ul id="c-list" class="file-list"></ul>
@@ -54,17 +54,15 @@
         </div>
 
         <!-- 📄 Markdown Content Display -->
-        <pre><code id="markdown-content"></code></pre>
+        <div id="markdown-container"></div>
     </main>
 
     <script>
-        // Function to toggle dropdown visibility
         function toggleDropdown(id) {
             let list = document.getElementById(id + "-list");
             list.style.display = (list.style.display === "block") ? "none" : "block";
         }
 
-        // Load JSON and populate file lists
         async function loadFileList() {
             try {
                 const response = await fetch("file-list.json");
@@ -92,18 +90,16 @@
             }
         }
 
-        // Load Markdown content and display it
         async function loadMarkdown(file) {
             try {
                 const response = await fetch(file);
                 const text = await response.text();
-                document.getElementById("markdown-content").textContent = text;
+                document.getElementById("markdown-container").innerHTML = marked.parse(text);
             } catch (error) {
-                document.getElementById("markdown-content").textContent = "Error loading file.";
+                document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";
             }
         }
 
-        // Load file list on page load
         loadFileList();
     </script>
 
@@ -113,6 +109,7 @@
         .dropdown button { width: 100%; text-align: left; cursor: pointer; padding: 10px; }
         .file-list { display: none; padding-left: 20px; list-style-type: none; }
         .file-list li { margin: 5px 0; }
+        #markdown-container { padding: 20px; background: #f5f5f5; border-radius: 5px; text-align: left; max-width: 800px; margin: 20px auto; }
     </style>
 
 </body>
