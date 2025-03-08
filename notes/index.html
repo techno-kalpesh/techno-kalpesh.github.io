@@ -1,91 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes - Programming</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <title>Notes - My Portfolio</title>
+
+    <!-- Link to the main CSS file -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Link to JavaScript file -->
+    <script src="../assets/js/script.js" defer></script>
 </head>
 <body>
 
-<!-- 🔹 Main Menu -->
-<nav class="main-menu">
-    <ul>
-        <li><a href="../../index.html">Home</a></li>
-        <li><a href="index.html" class="active">Notes</a></li>
-    </ul>
-</nav>
+    <!-- 🌟 Above Header (Same as Home Page) -->
+    <header class="above-header">
+        <div class="container">
+            <h1>My Portfolio</h1>
+            <p>Web Developer | Programmer | Designer</p>
+        </div>
+    </header>
 
-<!-- 📜 Notes Section -->
-<h2>Programming Notes</h2>
+    <!-- 🏠 Main Navigation Menu (Same as Home Page) -->
+    <nav class="main-menu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html" class="active">Notes</a></li>
+        </ul>
 
-<!-- 📂 C Programming -->
-<h3 onclick="toggleDropdown('c-list')">▶ C Programming</h3>
-<ul id="c-list" class="file-list" style="display: none;"></ul>
+        <!-- Dark Mode Toggle Button -->
+        <button id="theme-toggle">🌙</button>  
+    </nav>
 
-<!-- 📂 SQL Commands -->
-<h3 onclick="toggleDropdown('sql-list')">▶ SQL Commands</h3>
-<ul id="sql-list" class="file-list" style="display: none;"></ul>
+    <!-- 📖 Notes Content Section -->
+    <main class="notes-content">
+        <h2>Programming Notes</h2>
+        <p>Click on a category to view notes.</p>
 
-<!-- 📂 Java Programming -->
-<h3 onclick="toggleDropdown('java-list')">▶ Java Programming</h3>
-<ul id="java-list" class="file-list" style="display: none;"></ul>
+        <!-- Dropdown Sections for Notes -->
+        <div class="dropdown">
+            <button onclick="toggleDropdown('c')">C Programming ⏬</button>
+            <ul id="c-list" class="file-list"></ul>
+        </div>
 
-<!-- 📄 Markdown Content Display -->
-<pre><code id="markdown-content"></code></pre>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('java')">Java Programming ⏬</button>
+            <ul id="java-list" class="file-list"></ul>
+        </div>
 
-<script>
-    // Function to toggle file lists
-    function toggleDropdown(id) {
-        let section = document.getElementById(id);
-        section.style.display = section.style.display === "none" ? "block" : "none";
-    }
+        <div class="dropdown">
+            <button onclick="toggleDropdown('sql')">SQL Commands ⏬</button>
+            <ul id="sql-list" class="file-list"></ul>
+        </div>
 
-    // Fetch file list from JSON and populate categories
-    async function loadFileList() {
-        try {
-            const response = await fetch("file-list.json");
-            const data = await response.json();
+        <!-- 📄 Markdown Content Display -->
+        <pre><code id="markdown-content"></code></pre>
+    </main>
 
-            populateList("c-list", "c", data);
-            populateList("sql-list", "sql", data);
-            populateList("java-list", "java", data);
-
-        } catch (error) {
-            console.error("Error loading file list:", error);
+    <script>
+        // Function to toggle dropdown visibility
+        function toggleDropdown(id) {
+            let list = document.getElementById(id + "-list");
+            list.style.display = (list.style.display === "block") ? "none" : "block";
         }
-    }
 
-    // Populate file list in respective sections
-    function populateList(listId, category, data) {
-        let list = document.getElementById(listId);
-        list.innerHTML = "";
+        // Load JSON and populate file lists
+        async function loadFileList() {
+            try {
+                const response = await fetch("file-list.json");
+                const data = await response.json();
 
-        (data[category] || []).forEach(file => {
-            let listItem = document.createElement("li");
-            let link = document.createElement("a");
-            link.href = "#";
-            link.textContent = file.replace(".md", "").replace("-", " ");
-            link.onclick = () => loadMarkdown(category + "/" + file);
-            listItem.appendChild(link);
-            list.appendChild(listItem);
-        });
-    }
-
-    // Load and display Markdown file content
-    async function loadMarkdown(file) {
-        try {
-            const response = await fetch(file);
-            const text = await response.text();
-            document.getElementById("markdown-content").textContent = text;
-        } catch (error) {
-            document.getElementById("markdown-content").textContent = "Error loading file.";
+                Object.keys(data).forEach(category => {
+                    const list = document.getElementById(category + "-list");
+                    if (list) {
+                        data[category].forEach(file => {
+                            let listItem = document.createElement("li");
+                            let link = document.createElement("a");
+                            link.href = `./${category}/${file}`;
+                            link.textContent = file.replace(".md", "").replace("-", " ");
+                            link.onclick = (event) => {
+                                event.preventDefault();
+                                loadMarkdown(category + "/" + file);
+                            };
+                            listItem.appendChild(link);
+                            list.appendChild(listItem);
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error("Error loading file list:", error);
+            }
         }
-    }
 
-    // Load file list on page load
-    loadFileList();
-</script>
+        // Load Markdown content and display it
+        async function loadMarkdown(file) {
+            try {
+                const response = await fetch(file);
+                const text = await response.text();
+                document.getElementById("markdown-content").textContent = text;
+            } catch (error) {
+                document.getElementById("markdown-content").textContent = "Error loading file.";
+            }
+        }
+
+        // Load file list on page load
+        loadFileList();
+    </script>
+
+    <style>
+        .notes-content { text-align: center; padding: 20px; }
+        .dropdown { margin: 10px 0; }
+        .dropdown button { width: 100%; text-align: left; cursor: pointer; padding: 10px; }
+        .file-list { display: none; padding-left: 20px; list-style-type: none; }
+        .file-list li { margin: 5px 0; }
+    </style>
 
 </body>
 </html>
