@@ -1,20 +1,22 @@
-<!DOCTYPE html> 
-<html lang="en"> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes - My Portfolio</title>
+    <title>Programming Notes</title>
 
-    <!-- Link to the main CSS file -->
+    <!-- Link CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <!-- Link to JavaScript file -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> 
+    <!-- Showdown.js for Markdown Rendering -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+
+    <!-- Link JS -->
+    <script src="script.js" defer></script>
 </head>
 <body>
 
-    <!-- 🌟 Header -->
+    <!-- Header -->
     <header class="above-header">
         <div class="container">
             <h1>My Portfolio</h1>
@@ -22,96 +24,26 @@
         </div>
     </header>
 
-    <!-- 🏠 Main Navigation Menu -->
+    <!-- Navigation Menu -->
     <nav class="main-menu">
         <ul>
             <li><a href="../index.html">Home</a></li>
-            <li><a href="index.html" class="active">Notes</a></li>
+            <li><a href="index.html">Notes</a></li>
         </ul>
-
-        <!-- Dark Mode Toggle Button -->
-        <button id="theme-toggle">🌙</button>  
+        <button id="theme-toggle">🌙</button>
     </nav>
 
-    <!-- 📖 Notes Content Section -->
-    <main class="notes-content">
+    <!-- Notes Section -->
+    <main class="home-content">
         <h2>Programming Notes</h2>
         <p>Click on a category to view notes.</p>
 
-        <!-- Dropdown Sections -->
-        <div class="dropdown">
-            <button onclick="toggleDropdown('c')">C Programming ⏬</button>
-            <ul id="c-list" class="file-list"></ul>
-        </div>
+        <!-- List of Notes (Dynamically Generated) -->
+        <ul id="notes-list"></ul>
 
-        <div class="dropdown">
-            <button onclick="toggleDropdown('java')">Java Programming ⏬</button>
-            <ul id="java-list" class="file-list"></ul>
-        </div>
-
-        <div class="dropdown">
-            <button onclick="toggleDropdown('sql')">SQL Commands ⏬</button>
-            <ul id="sql-list" class="file-list"></ul>
-        </div>
-
-        <!-- 📄 Markdown Content Display -->
-        <div id="markdown-container"></div>
+        <!-- Markdown Content Will Be Rendered Here -->
+        <div id="md-content"></div>
     </main>
-
-    <script>
-        function toggleDropdown(id) {
-            let list = document.getElementById(id + "-list");
-            list.style.display = (list.style.display === "block") ? "none" : "block";
-        }
-
-        async function loadFileList() {
-            try {
-                const response = await fetch("file-list.json");
-                const data = await response.json();
-
-                Object.keys(data).forEach(category => {
-                    const list = document.getElementById(category + "-list");
-                    if (list) {
-                        data[category].forEach(file => {
-                            let listItem = document.createElement("li");
-                            let link = document.createElement("a");
-                            link.href = `./${category}/${file}`;
-                            link.textContent = file.replace(".md", "").replace("-", " ");
-                            link.onclick = (event) => {
-                                event.preventDefault();
-                                loadMarkdown(category + "/" + file);
-                            };
-                            listItem.appendChild(link);
-                            list.appendChild(listItem);
-                        });
-                    }
-                });
-            } catch (error) {
-                console.error("Error loading file list:", error);
-            }
-        }
-
-        async function loadMarkdown(file) {
-            try {
-                const response = await fetch(file);
-                const text = await response.text();
-                document.getElementById("markdown-container").innerHTML = marked.parse(text);
-            } catch (error) {
-                document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";
-            }
-        }
-
-        loadFileList();
-    </script>
-
-    <style>
-        .notes-content { text-align: center; padding: 20px; }
-        .dropdown { margin: 10px 0; }
-        .dropdown button { width: 100%; text-align: left; cursor: pointer; padding: 10px; }
-        .file-list { display: none; padding-left: 20px; list-style-type: none; }
-        .file-list li { margin: 5px 0; }
-        #markdown-container { padding: 20px; background: #f5f5f5; border-radius: 5px; text-align: left; max-width: 800px; margin: 20px auto; }
-    </style>
 
 </body>
 </html>
