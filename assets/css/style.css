@@ -56,6 +56,17 @@ body {
 #markdown-container p {  
     margin-top: 5px; /* Adjust as needed */  
 }
+/* Reduce space after list items */
+#markdown-container ul,  
+#markdown-container ol {  
+    margin-bottom: 5px; /* Adjust as needed */  
+    padding-left: 20px; /* Ensures indentation is proper */  
+}
+
+/* Reduce space between list items */
+#markdown-container li {  
+    margin-bottom: 2px; /* Adjust as needed */  
+}
 
 /* 🌓 Dark Mode Button */
 #theme-toggle {
@@ -106,8 +117,17 @@ body {
 #markdown-container h6 {  
     margin-bottom: 5px; /* Adjust as needed */  
 }
+.file-list li {
+    text-align: left; /* Explicitly align each list item */
+}
 
 /* Reduce space before paragraphs */
 #markdown-container p {  
     margin-top: 5px; /* Adjust as needed */  
 }
+/* Align file list items to the left */
+.file-list {
+    text-align: left;  /* Ensure text aligns to the left */
+    padding-left: 20px; /* Indent for better structure */
+}
+
