@@ -12,7 +12,7 @@ Any hardware or software environment in which a program runs is known as a platf
 
 ## Features of Java
 - **Simple and easy :** 
-<br>Java is easy to learn and its syntax is simple , clear and based on c/c++.
+Java is easy to learn and its syntax is simple , clear and based on c/c++.
 - **Object-Oriented :** 
 <br>Java is based on OOPs Concept. Everything in java is treated as object, enabling code reusability and modularity.
 - **Platform-Independent ans Portable:** 
