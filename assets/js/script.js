@@ -3,7 +3,6 @@ const toggleButton = document.getElementById("theme-toggle");
 
 // 🌙 Add event listener to toggle dark mode when clicked
 toggleButton.addEventListener("click", () => {
-    
     // Toggle dark mode class on body
     document.body.classList.toggle("dark-mode");
 
@@ -16,23 +15,9 @@ toggleButton.addEventListener("click", () => {
     } else {
         toggleButton.textContent = "🌙";  // Change to moon icon
     }
-    async function loadMarkdown(file) {  
-    try {  
-        const response = await fetch(file);  
-        const text = await response.text();  
+});
 
-        // Convert Markdown to HTML
-        document.getElementById("markdown-container").innerHTML = marked.parse(text);  
-
-        // Apply syntax highlighting for code blocks
-        document.querySelectorAll("pre code").forEach((block) => {  
-            hljs.highlightElement(block);  
-        });  
-    } catch (error) {  
-        document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";  
-    }  
-    }
-    let filesList = [];
+let filesList = [];
 let currentIndex = 0;
 
 async function loadFileList() {
@@ -87,4 +72,3 @@ function navigateFile(direction) {
 
 // Load file list on page load
 loadFileList();
-});
