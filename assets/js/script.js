@@ -32,4 +32,59 @@ toggleButton.addEventListener("click", () => {
         document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";  
     }  
     }
+    let filesList = [];
+let currentIndex = 0;
+
+async function loadFileList() {
+    try {
+        const response = await fetch("file-list.json");
+        const data = await response.json();
+
+        filesList = [];
+        Object.keys(data).forEach(category => {
+            data[category].forEach(file => {
+                filesList.push(`${category}/${file}`);
+            });
+        });
+    } catch (error) {
+        console.error("Error loading file list:", error);
+    }
+}
+
+async function loadMarkdown(file) {
+    try {
+        const response = await fetch(file);
+        const text = await response.text();
+        document.getElementById("markdown-container").innerHTML = marked.parse(text);
+
+        currentIndex = filesList.indexOf(file);
+        showNavigationButtons();
+    } catch (error) {
+        document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";
+    }
+}
+
+function showNavigationButtons() {
+    const container = document.getElementById("markdown-container");
+    
+    let prevButton = currentIndex > 0
+        ? `<button onclick="navigateFile(-1)">⬅️ Previous</button>`
+        : "";
+    
+    let nextButton = currentIndex < filesList.length - 1
+        ? `<button onclick="navigateFile(1)">Next ➡️</button>`
+        : "";
+
+    container.innerHTML += `<div class="nav-buttons">${prevButton} ${nextButton}</div>`;
+}
+
+function navigateFile(direction) {
+    let newIndex = currentIndex + direction;
+    if (newIndex >= 0 && newIndex < filesList.length) {
+        loadMarkdown(filesList[newIndex]);
+    }
+}
+
+// Load file list on page load
+loadFileList();
 });
