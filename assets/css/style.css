@@ -42,6 +42,20 @@ body {
     text-decoration: none;  /* Removes underline */
     font-weight: bold;  /* Makes text bold */
 }
+/* Reduce space after headings */
+#markdown-container h1, 
+#markdown-container h2, 
+#markdown-container h3, 
+#markdown-container h4, 
+#markdown-container h5, 
+#markdown-container h6 {  
+    margin-bottom: 5px; /* Adjust as needed */  
+}
+
+/* Reduce space before paragraphs */
+#markdown-container p {  
+    margin-top: 5px; /* Adjust as needed */  
+}
 
 /* 🌓 Dark Mode Button */
 #theme-toggle {
@@ -82,4 +96,18 @@ body {
     display: block;  
     font-family: "Courier New", monospace;  
     font-size: 14px;  
+}
+/* Reduce space after headings */
+#markdown-container h1, 
+#markdown-container h2, 
+#markdown-container h3, 
+#markdown-container h4, 
+#markdown-container h5, 
+#markdown-container h6 {  
+    margin-bottom: 5px; /* Adjust as needed */  
+}
+
+/* Reduce space before paragraphs */
+#markdown-container p {  
+    margin-top: 5px; /* Adjust as needed */  
 }
