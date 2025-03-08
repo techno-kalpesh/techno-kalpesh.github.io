@@ -57,3 +57,14 @@ body {
     text-align: center;  /* Centers content */
     padding: 20px;  /* Adds spacing */
 }
+#markdown-container {
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 5px;
+    text-align: left;
+    max-width: 800px;
+    margin: 20px auto;
+    overflow-wrap: break-word; /* Ensures long words break */
+    word-wrap: break-word; /* Breaks long words */
+    white-space: pre-wrap; /* Preserves formatting while wrapping */
+}
