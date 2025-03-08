@@ -16,4 +16,20 @@ toggleButton.addEventListener("click", () => {
     } else {
         toggleButton.textContent = "🌙";  // Change to moon icon
     }
+    async function loadMarkdown(file) {  
+    try {  
+        const response = await fetch(file);  
+        const text = await response.text();  
+
+        // Convert Markdown to HTML
+        document.getElementById("markdown-container").innerHTML = marked.parse(text);  
+
+        // Apply syntax highlighting for code blocks
+        document.querySelectorAll("pre code").forEach((block) => {  
+            hljs.highlightElement(block);  
+        });  
+    } catch (error) {  
+        document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";  
+    }  
+    }
 });
