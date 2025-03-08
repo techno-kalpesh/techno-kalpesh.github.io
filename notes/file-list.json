@@ -1,14 +1,18 @@
 {
-    "c": [
-        "01-variables.md",
-        "02-pointers.md"
-    ],
-    "sql": [
-        "01-sql-basics.md",
-        "02-joins.md"
-    ],
-    "java": [
-        "01-introductiontojava.md",
-        "02-installationjava.md"
-    ]
+    "c": 
+         [
+             "01-introduction.md",
+             "02-pointers.md"
+         ],
+    
+    "java":
+            [
+                "01-introduction.md",
+                "02-basics.md"
+            ],
+    "sql":
+            [
+                "01-queries.md",
+                "02-joins.md"
+            ]
 }
