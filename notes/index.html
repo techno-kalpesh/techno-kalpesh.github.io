@@ -1,239 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes - My Portfolio</title>
+<!DOCTYPE html>   <html lang="en">   
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Notes - My Portfolio</title>  <!-- Link to the main CSS file -->  
+<link rel="stylesheet" href="../assets/css/style.css">  
 
-    <!-- Link to the main CSS file -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+<!-- Link to JavaScript file -->  
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 
-    <!-- Link to JavaScript libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
-</head>
-<body>
+</head>  
+<body>  <!-- 🌟 Header -->  
+<header class="above-header">  
+    <div class="container">  
+        <h1>My Portfolio</h1>  
+        <p>Web Developer | Programmer | Designer</p>  
+    </div>  
+</header>  
 
-    <!-- 🌟 Header -->
-    <header class="above-header">
-        <div class="container">
-            <h1>My Portfolio</h1>
-            <p>Web Developer | Programmer | Designer</p>
-        </div>
-    </header>
+<!-- 🏠 Main Navigation Menu -->  
+<nav class="main-menu">  
+    <ul>  
+        <li><a href="../index.html">Home</a></li>  
+        <li><a href="index.html" class="active">Notes</a></li>  
+    </ul>  
 
-    <!-- 🏠 Main Navigation Menu -->
-    <nav class="main-menu">
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="index.html" class="active">Notes</a></li>
-        </ul>
+    <!-- Dark Mode Toggle Button -->  
+    <button id="theme-toggle">🌙</button>    
+</nav>  
 
-        <!-- Dark Mode Toggle Button -->
-        <button id="theme-toggle">🌙</button>  
-    </nav>
+<!-- 📖 Notes Content Section -->  
+<main class="notes-content">  
+    <h2>Programming Notes</h2>  
+    <p>Click on a category to view notes.</p>  
 
-    <!-- 📖 Notes Content Section -->
-    <main class="notes-content">
-        <h2>Programming Notes</h2>
-        <p>Click on a category to view notes.</p>
+    <!-- Dropdown Sections -->  
+    <div class="dropdown">  
+        <button onclick="toggleDropdown('c')">C Programming ⏬</button>  
+        <ul id="c-list" class="file-list"></ul>  
+    </div>  
 
-        <!-- Dropdown Sections -->
-        <div class="dropdown">
-            <button onclick="toggleDropdown('c')">C Programming ⏬</button>
-            <ul id="c-list" class="file-list"></ul>
-        </div>
+    <div class="dropdown">  
+        <button onclick="toggleDropdown('java')">Java Programming ⏬</button>  
+        <ul id="java-list" class="file-list"></ul>  
+    </div>  
 
-        <div class="dropdown">
-            <button onclick="toggleDropdown('java')">Java Programming ⏬</button>
-            <ul id="java-list" class="file-list"></ul>
-        </div>
+    <div class="dropdown">  
+        <button onclick="toggleDropdown('sql')">SQL Commands ⏬</button>  
+        <ul id="sql-list" class="file-list"></ul>  
+    </div>  
 
-        <div class="dropdown">
-            <button onclick="toggleDropdown('sql')">SQL Commands ⏬</button>
-            <ul id="sql-list" class="file-list"></ul>
-        </div>
+    <!-- 📄 Markdown Content Display -->  
+    <div id="markdown-container"></div>  
+</main>  
 
-        <!-- 📄 Markdown Content Display -->
-        <div id="markdown-container"></div>
-    </main>
+<script>  
+    function toggleDropdown(id) {  
+        let list = document.getElementById(id + "-list");  
+        list.style.display = (list.style.display === "block") ? "none" : "block";  
+    }  
 
-    <!-- JavaScript for Dynamic Loading -->
-    <script>
-        // Function to toggle dropdown menu
-        async function toggleDropdown(id) {
-            let list = document.getElementById(id + "-list");
-            if (list.children.length === 0) await loadCategoryFiles(id);
-            list.style.display = (list.style.display === "block") ? "none" : "block";
-        }
+    async function loadFileList() {  
+        try {  
+            const response = await fetch("file-list.json");  
+            const data = await response.json();  
 
-        // Load file list dynamically
-        async function loadCategoryFiles(category) {
-            try {
-                const response = await fetch("file-list.json");
-                const data = await response.json();
-                const list = document.getElementById(category + "-list");
+            Object.keys(data).forEach(category => {  
+                const list = document.getElementById(category + "-list");  
+                if (list) {  
+                    data[category].forEach(file => {  
+                        let listItem = document.createElement("li");  
+                        let link = document.createElement("a");  
+                        link.href = `./${category}/${file}`;  
+                        link.textContent = file.replace(".md", "").replace("-", " ");  
+                        link.onclick = (event) => {  
+                            event.preventDefault();  
+                            loadMarkdown(category + "/" + file);  
+                        };  
+                        listItem.appendChild(link);  
+                        list.appendChild(listItem);  
+                    });  
+                }  
+            });  
+        } catch (error) {  
+            console.error("Error loading file list:", error);  
+        }  
+    }  
 
-                if (list && data[category]) {
-                    data[category].forEach(file => {
-                        let listItem = document.createElement("li");
-                        let link = document.createElement("a");
-                        link.href = `./${category}/${file}`;
-                        link.textContent = file.replace(".md", "").replace("-", " ");
-                        link.onclick = (event) => {
-                            event.preventDefault();
-                            loadMarkdown(category + "/" + file);
-                        };
-                        listItem.appendChild(link);
-                        list.appendChild(listItem);
-                    });
-                }
-            } catch (error) {
-                console.error("Error loading files for", category, ":", error);
-            }
-        }
+    async function loadMarkdown(file) {  
+        try {  
+            const response = await fetch(file);  
+            const text = await response.text();  
+            document.getElementById("markdown-container").innerHTML = marked.parse(text);  
+        } catch (error) {  
+            document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";  
+        }  
+    }  
 
-        // Load markdown file content
-        async function loadMarkdown(file) {
-            try {
-                const response = await fetch(file);
-                const text = await response.text();
-                document.getElementById("markdown-container").innerHTML = marked(text);
-            } catch (error) {
-                document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";
-            }
-        }
+    loadFileList();  
+</script>  
 
-        // Dark mode toggle functionality
-        document.getElementById("theme-toggle").addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-            let mode = document.body.classList.contains("dark-mode") ? "🌞" : "🌙";
-            this.textContent = mode;
-        });
+<style>  
+    .notes-content { text-align: center; padding: 20px; }  
+    .dropdown { margin: 10px 0; }  
+    .dropdown button { width: 100%; text-align: left; cursor: pointer; padding: 10px; }  
+    .file-list { display: none; padding-left: 20px; list-style-type: none; }  
+    .file-list li { margin: 5px 0; }  
+    #markdown-container { padding: 20px; background: #f5f5f5; border-radius: 5px; text-align: left; max-width: 800px; margin: 20px auto; }  
+</style>
 
-    </script>
-
-    <!-- CSS Styling -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        /* Dark Mode */
-        .dark-mode {
-            background: #222;
-            color: #ddd;
-        }
-        .dark-mode #markdown-container {
-            background: #333;
-            color: #fff;
-        }
-
-        /* Header */
-        .above-header {
-            background: #007bff;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-
-        /* Navigation */
-        .main-menu {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            background: #333;
-        }
-        .main-menu ul {
-            list-style: none;
-            display: flex;
-            padding: 0;
-        }
-        .main-menu li {
-            margin: 0 10px;
-        }
-        .main-menu a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 12px;
-        }
-        .main-menu a.active {
-            background: #007bff;
-            border-radius: 5px;
-        }
-        #theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        /* Notes Section */
-        .notes-content {
-            text-align: center;
-            padding: 20px;
-        }
-        .dropdown {
-            margin: 10px 0;
-        }
-        .dropdown button {
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        .file-list {
-            display: none;
-            padding-left: 20px;
-            list-style-type: none;
-        }
-        .file-list li {
-            margin: 5px 0;
-        }
-        .file-list a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        /* Markdown Content */
-        #markdown-container {
-            padding: 20px;
-            background: white;
-            border-radius: 5px;
-            text-align: left;
-            max-width: 800px;
-            margin: 20px auto;
-        }
-        #markdown-container h1, 
-        #markdown-container h2, 
-        #markdown-container h3 {
-            color: #333;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-        }
-        #markdown-container code {
-            background: #eee;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        #markdown-container pre {
-            background: #333;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-    </style>
-
-</body>
+</body>  
 </html>
