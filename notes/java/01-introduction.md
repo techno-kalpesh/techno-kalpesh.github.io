@@ -45,5 +45,3 @@ The Java Runtime Environment (JRE) provides the libraries, Java Virtual Machine 
 
 - **Java Virtual Machine (JVM) :**
 The Java Virtual Machine (JVM) is an abstract computing machine that enables a computer to run a Java program. It converts Java bytecode into machine code and executes it on the host machine
-
-[Next →](02-Java-Installation.md)
