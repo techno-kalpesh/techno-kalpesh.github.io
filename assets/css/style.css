@@ -68,3 +68,18 @@ body {
     word-wrap: break-word; /* Breaks long words */
     white-space: pre-wrap; /* Preserves formatting while wrapping */
 }
+#markdown-container pre {  
+    background: #282c34; /* Dark theme background */
+    color: #ffffff;  
+    padding: 10px;  
+    border-radius: 5px;  
+    overflow-x: auto; /* Adds horizontal scrolling for long lines */  
+    white-space: pre-wrap; /* Ensures line wrapping */
+    word-wrap: break-word; /* Forces word wrapping */
+}
+
+#markdown-container pre code {  
+    display: block;  
+    font-family: "Courier New", monospace;  
+    font-size: 14px;  
+}
