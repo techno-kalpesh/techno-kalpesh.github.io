@@ -38,11 +38,14 @@ body {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px; /* Rounded corners for the oval shape */
+    transition: background 0.3s, color 0.3s;
 }
 
-.main-menu a.active {
-    color: yellow; /* Highlight active link */
-    text-decoration: underline; /* Optional: Add underline */
+.main-menu a.current {
+    background: yellow; /* Background color for the active link */
+    color: black; /* Text color for the active link */
 }
 
 /* Reduce space after headings */
