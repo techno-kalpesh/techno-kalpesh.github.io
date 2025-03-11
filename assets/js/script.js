@@ -49,12 +49,24 @@ function navigateFile(direction) {
     }
 }
 
-// Load file list on page load
-loadFileList();
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+    // Highlight current page in the menu
     document.querySelectorAll(".main-menu a").forEach(link => {
         if (link.href === window.location.href) {
             link.classList.add("current");
         }
     });
+
+    // Load about.md content in the About page (index.html)
+    if (window.location.pathname.includes("index.html")) {
+        fetch("about.md")
+            .then(response => response.text())
+            .then(markdown => {
+                document.getElementById("about-content").innerHTML = new showdown.Converter().makeHtml(markdown);
+            })
+            .catch(error => console.error("Error loading about.md:", error));
+    }
 });
+
+// Load file list on page load
+loadFileList();
