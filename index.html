@@ -1,56 +1,45 @@
-<!DOCTYPE html> 
-<html lang="en"> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">  <!-- Defines character encoding for proper text display -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Makes the site responsive for mobile -->
-    <title>My Portfolio & Notes</title>  <!-- Sets the page title -->
-
-    <!-- Link to the main CSS file -->
-    <link rel="stylesheet" href="assets/css/style.css"> 
-
-    <!-- Markdown Parser (Showdown.js) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
-    <!-- Link to JavaScript file (defer ensures it loads after HTML) -->
-    <script src="assets/js/script.js" defer></script> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio & Notes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
 </head>
 <body>
-
-    <!-- 🌟 Above Header (Portfolio Section) -->
     <header class="above-header">
         <div class="container">
-            <h1>Programming Notes</h1>  <!-- Website title -->
-            <p>Web Developer | Programmer | Designer</p>  <!-- Short description -->
+            <h1>Programming Notes</h1>
+            <p>Web Developer | Programmer | Designer</p>
         </div>
     </header>
-
-    <!-- 🏠 Main Navigation Menu -->
     <nav class="main-menu">
         <ul>
-            <li><a href="notes/index.html">Notes</a></li>  <!-- Links to Notes -->         
-            <li><a href="index.html">About</a></li> <!-- about section -->
+            <li><a href="notes/index.html">Notes</a></li>
+            <li><a href="index.html">About</a></li>
         </ul>
-
-        <!-- Dark Mode Toggle Button -->
-        <button id="theme-toggle">🌙</button>  
+        <button id="theme-toggle">🌙</button>
     </nav>
-
-    <!-- 📝 Home Content Section -->
-<main class="home-content">
+    <main class="home-content">
         <h2>About Me</h2>
-        <div id="about-content">Loading...</div> <!-- Markdown content will load here -->
-</main>
+        <div id="about-content">Loading...</div>
+    </main>
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    let links = document.querySelectorAll(".main-menu a");
-    links.forEach(link => {
-        if (link.href === window.location.href) {
-            link.classList.add("current");
-        }
-    });
-});
-</script>
-</body>
-</html>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Highlight the current menu item
+            document.querySelectorAll(".main-menu a").forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("current");
+                }
+            });
 
+            // Toggle dark mode
+            document.getElementById("theme-toggle").addEventListener("click", function () {
+                document.body.classList.toggle("dark-mode");
+            });
+        });
+    </script>
 </body>
 </html>
