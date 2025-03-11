@@ -149,3 +149,10 @@ body {
 .nav-buttons button:hover {
     background: #0056b3;
 }
+.main-menu a.current {
+    background-color: yellow; /* Highlights active menu item */
+    color: black; /* Ensures text is visible */
+    padding: 5px 10px; /* Adds spacing */
+    border-radius: 5px; /* Rounded edges */
+    font-weight: bold;
+}
