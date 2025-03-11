@@ -8,6 +8,8 @@
     <!-- Link to the main CSS file -->
     <link rel="stylesheet" href="assets/css/style.css"> 
 
+    <!-- Markdown Parser (Showdown.js) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
     <!-- Link to JavaScript file (defer ensures it loads after HTML) -->
     <script src="assets/js/script.js" defer></script> 
 </head>
@@ -33,10 +35,10 @@
     </nav>
 
     <!-- 📝 Home Content Section -->
-    <main class="home-content">
-        <h2>Welcome to My Notes</h2>  <!-- Main heading -->
-        <p>This website contains my programming notes categorized by languages. Click on a language from the menu to get started.</p>  <!-- Description -->
-    </main>
+<main class="home-content">
+        <h2>About Me</h2>
+        <div id="about-content">Loading...</div> <!-- Markdown content will load here -->
+</main>
     <script>
 document.addEventListener("DOMContentLoaded", function () {
     let links = document.querySelectorAll(".main-menu a");
