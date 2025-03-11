@@ -72,3 +72,11 @@ function navigateFile(direction) {
 
 // Load file list on page load
 loadFileList();
+document.addEventListener("DOMContentLoaded", function () {
+    let links = document.querySelectorAll(".main-menu a");
+    links.forEach(link => {
+        if (link.href === window.location.href) {
+            link.classList.add("current");
+        }
+    });
+});
