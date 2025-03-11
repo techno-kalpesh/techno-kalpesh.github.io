@@ -112,6 +112,15 @@
     .file-list li { margin: 5px 0; }  
     #markdown-container { padding: 20px; background: #f5f5f5; border-radius: 5px; text-align: left; max-width: 800px; margin: 20px auto; }  
 </style>
-
-</body>  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let links = document.querySelectorAll(".main-menu a");
+    links.forEach(link => {
+        if (link.href === window.location.href) {
+            link.classList.add("current");
+        }
+    });
+});
+</script>
+</body>
 </html>
