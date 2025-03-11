@@ -156,3 +156,28 @@ body {
     border-radius: 5px; /* Rounded edges */
     font-weight: bold;
 }
+/* Prevent images from going outside the page */
+img {
+    max-width: 100%; /* Ensures the image never exceeds its container */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Removes extra space below inline images */
+    margin: 0 auto; /* Centers the image */
+}
+
+/* Ensure all elements stay inside the page */
+body, .container, .home-content {
+    max-width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    box-sizing: border-box; /* Ensures padding doesn't increase size */
+}/* Prevent long words or code from overflowing */
+.home-content {
+    word-wrap: break-word; /* Breaks long words */
+    overflow-wrap: break-word;
+    white-space: normal; /* Prevents text from extending the page */
+}
+
+/* Ensure all elements stay inside */
+* {
+    box-sizing: border-box; /* Ensures width includes padding */
+    max-width: 100%; /* Keeps all elements within the page */
+}
