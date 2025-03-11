@@ -88,3 +88,11 @@ body {
 #markdown-container {
     padding: 20px;
     background: ▋
+}
+/* Fix images inside about.md */
+#about-content img {
+    max-width: 100%; /* Ensures the image never exceeds its container */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Removes extra space below inline images */
+    margin: 10px auto; /* Centers the image */
+}
