@@ -13,7 +13,7 @@ let currentIndex = 0;
 
 async function loadFileList() {
     try {
-        const response = await fetch("file-list.json");
+        const response = await fetch("notes/file-list.json");
         const data = await response.json();
         filesList = Object.values(data).flat().map(file => `${file}`);
     } catch (error) {
