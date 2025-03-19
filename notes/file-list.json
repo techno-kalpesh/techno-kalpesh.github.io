@@ -1,0 +1,19 @@
+{
+    "c": 
+         [
+             "01-introduction.md",
+             "02-pointers.md"
+         ],
+    
+    "java":
+            [
+                "Java Notes.md" ,
+                "01-introduction.md",
+                "02-Java-Installation.md"
+            ],
+    "sql":
+            [
+                "01-queries.md",
+                "02-joins.md"
+            ]
+}

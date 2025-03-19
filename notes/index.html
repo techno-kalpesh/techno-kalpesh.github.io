@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - My Portfolio</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" defer></script>
+    <style>
+        .notes-content { text-align: center; padding: 20px; }
+        .dropdown { margin: 10px 0; }
+        .dropdown button { width: 100%; text-align: left; cursor: pointer; padding: 10px; }
+        .file-list { display: none; padding-left: 20px; list-style-type: none; }
+        .file-list li { margin: 5px 0; }
+        #markdown-container { padding: 20px; background: #f5f5f5; border-radius: 5px; text-align: left; max-width: 800px; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <header class="above-header">
+        <div class="container">
+            <h1>Programming Notes</h1>
+            <p>Web Developer | Programmer | Designer</p>
+        </div>
+    </header>
+    <nav class="main-menu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html" class="current">Notes</a></li>
+            <li><a href="../about/index.html">About</a></li>
+        </ul>
+        <button id="theme-toggle">🌙</button>
+    </nav>
+    <main class="notes-content">
+        <h2>Programming Notes</h2>
+        <p>Click on a category to view notes.</p>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('c')">C Programming ⏬</button>
+            <ul id="c-list" class="file-list"></ul>
+        </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('java')">Java Programming ⏬</button>
+            <ul id="java-list" class="file-list"></ul>
+        </div>
+        <div class="dropdown">
+            <button onclick="toggleDropdown('sql')">SQL Commands ⏬</button>
+            <ul id="sql-list" class="file-list"></ul>
+        </div>
+        <div id="markdown-container"></div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Highlight the current menu item
+            document.querySelectorAll(".main-menu a").forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("current");
+                }
+            });
+
+            // Toggle dark mode
+            document.getElementById("theme-toggle").addEventListener("click", function () {
+                document.body.classList.toggle("dark-mode");
+            });
+
+            // Load file list
+            loadFileList();
+        });
+
+        function toggleDropdown(id) {
+            const list = document.getElementById(id + "-list");
+            list.style.display = (list.style.display === "block") ? "none" : "block";
+        }
+
+        async function loadFileList() {
+            try {
+                const response = await fetch("file-list.json");
+                const data = await response.json();
+                Object.keys(data).forEach(category => {
+                    const list = document.getElementById(category + "-list");
+                    if (list) {
+                        data[category].forEach(file => {
+                            const listItem = document.createElement("li");
+                            const link = document.createElement("a");
+                            link.href = `./${category}/${file}`;
+                            link.textContent = file.replace(".md", "").replace("-", " ");
+                            link.onclick = (event) => {
+                                event.preventDefault();
+                                loadMarkdown(`${category}/${file}`);
+                            };
+                            listItem.appendChild(link);
+                            list.appendChild(listItem);
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error("Error loading file list:", error);
+            }
+        }
+
+        async function loadMarkdown(file) {
+            try {
+                const response = await fetch(file);
+                const text = await response.text();
+                document.getElementById("markdown-container").innerHTML = marked.parse(text);
+                hljs.highlightAll();
+            } catch (error) {
+                document.getElementById("markdown-container").innerHTML = "<p>Error loading file.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
