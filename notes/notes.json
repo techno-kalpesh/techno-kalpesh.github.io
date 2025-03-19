@@ -1,6 +1,14 @@
 {
-  "notes": [
-    { "name": "Java Notes", "link": "java-notes.md" },
-    { "name": "C Programming", "link": "c-programming.md" }
-  ]
+    "Notes": 
+         [
+             "java-notes.md",
+             "02-pointers.md"
+         ],
+    
+    "G-drive PDF's":
+            [
+                "Java Notes.md" ,
+                "01-introduction.md",
+                "02-Java-Installation.md"
+            ]
 }
