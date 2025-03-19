@@ -37,11 +37,11 @@
         <h2>Programming Notes</h2>
         <p>Click on a category to view notes.</p>
         <div class="dropdown">
-            <button onclick="toggleDropdown('c')">C Programming ⏬</button>
+            <button onclick="toggleDropdown('c')">Notes ⏬</button>
             <ul id="c-list" class="file-list"></ul>
         </div>
         <div class="dropdown">
-            <button onclick="toggleDropdown('java')">Java Programming ⏬</button>
+            <button onclick="toggleDropdown('java')">G-drive PDF's⏬</button>
             <ul id="java-list" class="file-list"></ul>
         </div>
         <div class="dropdown">
@@ -75,7 +75,7 @@
 
         async function loadFileList() {
             try {
-                const response = await fetch("file-list.json");
+                const response = await fetch("notes.json");
                 const data = await response.json();
                 Object.keys(data).forEach(category => {
                     const list = document.getElementById(category + "-list");
