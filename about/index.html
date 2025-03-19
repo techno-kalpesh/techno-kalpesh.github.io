@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - My Portfolio</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" defer></script>
+    <script src="../assets/js/script.js" defer></script>
+</head>
+<body>
+    <header class="above-header">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>Web Developer | Programmer | Designer</p>
+        </div>
+    </header>
+    <nav class="main-menu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../notes/index.html">Notes</a></li>
+            <li><a href="index.html" class="current">About</a></li>
+        </ul>
+        <button id="theme-toggle">🌙</button>
+    </nav>
+    <main class="home-content">
+        <h2>About Me</h2>
+        <div id="about-content">Loading...</div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Highlight the current menu item
+            document.querySelectorAll(".main-menu a").forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("current");
+                }
+            });
+
+            // Toggle dark mode
+            document.getElementById("theme-toggle").addEventListener("click", function () {
+                document.body.classList.toggle("dark-mode");
+            });
+
+            // Load about content
+            fetch("about.md")
+                .then(response => response.text())
+                .then(markdown => {
+                    document.getElementById("about-content").innerHTML = new showdown.Converter().makeHtml(markdown);
+                })
+                .catch(error => console.error("Error loading about.md:", error));
+        });
+    </script>
+</body>
+</html>
