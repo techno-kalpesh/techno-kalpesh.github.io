@@ -75,7 +75,7 @@
 
         async function loadFileList() {
             try {
-                const response = await fetch("notes.json");
+                const response = await fetch("file-list.json");
                 const data = await response.json();
                 Object.keys(data).forEach(category => {
                     const list = document.getElementById(category + "-list");
