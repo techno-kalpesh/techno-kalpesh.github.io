@@ -1,6 +1,6 @@
 {
   "notes": [
-    { "name": "Java Notes", "link": "java.md" },
+    { "name": "Java Notes", "link": "java-notes.md" },
     { "name": "C Programming", "link": "c-programming.md" }
   ]
 }
