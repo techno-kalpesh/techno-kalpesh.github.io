@@ -1,14 +1,18 @@
 {
-    "Notes": 
+    "c": 
          [
-             "java-notes.md",
+             "01-introduction.md",
              "02-pointers.md"
          ],
     
-    "G-drive PDF's":
+    "java":
             [
-                { "name": "Java Notes", "link": "https://drive.google.com/file/d/xyz/view" },
-    { "name": "C Programming", "link": "https://drive.google.com/file/d/abc/view" }
-    { "name": "DBMS","link":"https://drive.google.com/file/d/13q_a5PFBkbvLPxsD7dyiz-PlcQ-z4zm5/view?usp=drivesdk"}
+                "01-introduction.md",
+                "02-Java-Installation.md"
+            ],
+    "sql":
+            [
+                "01-queries.md",
+                "02-joins.md"
             ]
 }
