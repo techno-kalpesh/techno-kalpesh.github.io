@@ -49,6 +49,13 @@ function navigateFile(direction) {
     }
 }
 
+function loadPDF(pdfUrl) {
+    const pdfContainer = document.getElementById("pdf-container");
+    if (pdfContainer) {
+        pdfContainer.innerHTML = `<iframe src="https://drive.google.com/file/d/${pdfUrl}/preview" width="100%" height="600px"></iframe>`;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     // Highlight current page in the menu
     document.querySelectorAll(".main-menu a").forEach(link => {
@@ -65,6 +72,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("about-content").innerHTML = new showdown.Converter().makeHtml(markdown);
             })
             .catch(error => console.error("Error loading about.md:", error));
+    }
+
+    // Check if the URL contains a specific parameter to load the PDF
+    const urlParams = new URLSearchParams(window.location.search);
+    const pdfUrl = urlParams.get('pdf');
+    if (pdfUrl) {
+        loadPDF(pdfUrl);
     }
 });
 
