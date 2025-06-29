@@ -75,12 +75,16 @@ body {
     margin-bottom: 2px;
 }
 
-/* 🌓 Dark Mode Styles */
+/* 🌓 Dark Mode Styles for notes*/
 body.dark-mode {
-    background: #222;
-    color: #eee;
+    background-color: #1c1b1b;
+    color: #ffffff;
 }
 
+body.dark-mode #markdown-container {
+    background: #f5f5f5;
+    color: #1e1d1d;
+}
 .main-menu.dark-mode {
     background: #555;
 }
@@ -128,3 +132,6 @@ body.dark-mode {
     padding: 10px;
     cursor: pointer;
 }
+
+/* Add any other dark mode styles as needed */
+
